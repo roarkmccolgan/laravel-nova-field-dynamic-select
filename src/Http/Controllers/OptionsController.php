@@ -67,7 +67,7 @@ class OptionsController extends Controller
         $class = $request->input('action');
         $action = new $class();
 
-        $fields = $action->fields();
+        $fields = $action->fields($request);
         $field = collect($fields)->first(function ($f) use ($attribute) {
             return $f->attribute === $attribute;
         });

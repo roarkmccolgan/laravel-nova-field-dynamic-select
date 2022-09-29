@@ -1,6 +1,6 @@
 <template>
     <default-field :field="field" :errors="errors">
-        <template slot="field">
+        <template #field>
             <multiselect
                 v-model="value"
                 :options="options"
@@ -14,7 +14,8 @@
                 :deselectLabel="field.deselectLabel"
                 :selectedLabel="field.selectedLabel"
                 :loading="isLoading"
-                @input="onChange"
+                
+                @update:model-value="onChange"
                 :style="`--multiselect-highlight-bg: ${field.highlightBgColor};
                          --multiselect-highlight-text: ${field.highlightTextColor};
                          --multiselect-selected-highlight-bg: ${field.selectedHighlightBgColor};
@@ -38,7 +39,8 @@ export default {
         return {
             isLoading: false,
             defaultValue: null,
-            options: []
+            options: [],
+            value: null
         };
     },
 
@@ -179,9 +181,43 @@ export default {
     },
 }
 </script>
-
-<style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
+<style src="vue-multiselect/dist/dist/vue-multiselect.css"></style>
 <style>
+    :root {
+    --transparent: transparent;
+    --black: #22292f;
+    --white: #fff;
+    --white-50: hsla(0,0%,100%,.5);
+    --danger: #e74444;
+    --success: #21b978;
+    --warning: #ffeb3b;
+    --info: #03a9f4;
+    --primary: #4099de;
+    --primary-dark: #297ec0;
+    --primary-70: rgba(64,153,222,.7);
+    --primary-50: rgba(64,153,222,.5);
+    --primary-30: rgba(64,153,222,.3);
+    --primary-10: rgba(64,153,222,.1);
+    --logo: #252d37;
+    --sidebar-icon: #b3c1d1;
+    --20: #f6fbff;
+    --30: #f4f7fa;
+    --40: #eef1f4;
+    --50: #e3e7eb;
+    --60: #bacad6;
+    --70: #b3b9bf;
+    --80: #7c858e;
+    --90: #3c4b5f;
+    --90-half: rgba(40,54,61,.5);
+    --warning-light: #fff382;
+    --warning-dark: #684f1d;
+    --success-light: #c6f6d5;
+    --success-dark: #38a169;
+    --danger-light: #fed7d7;
+    --danger-dark: #e53e3e;
+    --info-light: #bee3f8;
+    --info-dark: #3182ce;
+}
     .multiselect {
         box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.05);
         min-height: 36px !important;
